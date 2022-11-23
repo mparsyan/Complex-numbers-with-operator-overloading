@@ -6,6 +6,8 @@ private:
     float real;
     float imag;
 public:
+    
+    // Ցանկալի է նաև ունենալ պարամետրերով կառուցիչ
     Complex()
     : real(0)
     , imag(0)
@@ -19,6 +21,7 @@ public:
 
     void output()
     {
+        // Էս ֆունկցիան լավ է մտածված
         if (imag < 0)
         {
             std::cout << "The complex number is: " << real << imag << "i\n";
@@ -28,23 +31,29 @@ public:
             std::cout << "The complex number is: " << real << "+" << imag << "i\n";
         }
     }
-
+    
     Complex operator + (const Complex& op)
     {
         Complex temp;
         this->real = this->real + op.real;
         this->imag = this->imag + op.imag;
+        
+        // Կարելի էր 42,43 տողերի փոխարեն copy constructor կանչել
+        // Ափսոս copy constructor-ը գրած չի
         temp.real = this->real;
         temp.imag = this->imag;
         return temp;
     }
 
+    // Քանի որ ++ը main֊ում օգտագործել ես prefix-ով 
+    // Այն պետք է վերադարձնի Complex&
     void operator ++ ()
     {
         this->real++;
         this->imag++;
     }
 
+    // Պետք է վերադարձնի Complex&
     void operator = (const Complex& op)
     {
         this->real = op.real;
@@ -56,6 +65,7 @@ public:
         return (real == op.real && imag == op.imag);
     }
 
+    // Պետք է վերադարձնի Complex&
     void operator += (const Complex& op)
     {
         this->real = this->real + op.real;
